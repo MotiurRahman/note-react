@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import PopupView from "../ModalView/PopupView";
 
 const Header = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ const Header = () => {
 
     console.log({ name, address });
 
-    fetch("http://localhost:3000/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,42 +69,12 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Form onSubmit={submitPeople}>
-          <Modal.Body>
-            <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                placeholder="Enter Name"
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                as="textarea"
-                name="address"
-                rows={3}
-                placeholder="Enter your address"
-                required
-              />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" type="submit">
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
+
+      <PopupView
+        show={show}
+        handleClose={handleClose}
+        submitPeople={submitPeople}
+      ></PopupView>
     </Navbar>
   );
 };

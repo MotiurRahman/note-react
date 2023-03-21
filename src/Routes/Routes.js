@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: async () => {
-          return fetch("http://localhost:3000/users");
+          return fetch("http://localhost:5000/users");
         },
       },
       { path: "about", element: <About></About> },

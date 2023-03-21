@@ -1,12 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { Form } from "react-router-dom";
+import { Button, Form, Modal } from "react-bootstrap";
 
-const Modal = ({ show, handleClose, submitPeople }) => {
+const UpdateModal = ({ show, handleClose, submitPeople, user }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Update Customer Info</Modal.Title>
       </Modal.Header>
       <Form onSubmit={submitPeople}>
         <Modal.Body>
@@ -15,7 +14,15 @@ const Modal = ({ show, handleClose, submitPeople }) => {
             <Form.Control
               type="text"
               name="name"
+              defaultValue={user.name}
               placeholder="Enter Name"
+              required
+            />
+
+            <Form.Control
+              type="hidden"
+              name="id"
+              defaultValue={user.id}
               required
             />
           </Form.Group>
@@ -23,6 +30,7 @@ const Modal = ({ show, handleClose, submitPeople }) => {
             <Form.Label>Address</Form.Label>
             <Form.Control
               as="textarea"
+              defaultValue={user.address}
               name="address"
               rows={3}
               placeholder="Enter your address"
@@ -43,4 +51,4 @@ const Modal = ({ show, handleClose, submitPeople }) => {
   );
 };
 
-export default Modal;
+export default UpdateModal;
